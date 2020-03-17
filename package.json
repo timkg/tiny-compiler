@@ -1,0 +1,15 @@
+{
+  "name": "tiny-compiler",
+  "version": "1.0.0",
+  "description": "Code-along to https://the-super-tiny-compiler.glitch.me/",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha",
+    "tdd": "mocha --watch"
+  },
+  "author": "timkg",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^7.1.0"
+  }
+}

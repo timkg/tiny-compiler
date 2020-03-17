@@ -1,0 +1,4 @@
+{
+    "watch-files": ["lib/**/*.js"],
+    "spec": "lib/**/*_test.js"
+  }
