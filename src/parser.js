@@ -5,6 +5,8 @@ function parser (tokens) {
     let current = 0;
     
     function walk() {
+
+        
         let token = tokens[current];
 
         if (token.type === TOKEN_TYPES.NUMBER) {

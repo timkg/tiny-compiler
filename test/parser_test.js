@@ -1,12 +1,13 @@
 var assert = require("assert");
 
-var parser = require("./parser");
-var tokenizer = require("./tokenizer");
+var parser = require("../built/parser");
+var tokenizer = require("../built/tokenizer");
 
-var { NODE_TYPES } = require("./constants");
+var { NODE_TYPES } = require("../built/constants");
 
 function withInput(input, cb) {
     var tokens = tokenizer(input);
+
     var ast = parser(tokens);
 
     return cb(ast);

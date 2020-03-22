@@ -4,12 +4,16 @@
   "description": "Code-along to https://the-super-tiny-compiler.glitch.me/",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "tdd": "mocha --watch"
+    "compile": "tsc",
+    "test": "tsc && mocha",
+    "tdd": "tsc --watch & mocha --watch"
+    
   },
   "author": "timkg",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^7.1.0"
+    "@types/node": "^13.9.2",
+    "mocha": "^7.1.0",
+    "typescript": "^3.8.3"
   }
 }

@@ -1,6 +1,6 @@
 var assert = require("assert");
-var tokenizer = require("./tokenizer");
-var { TOKEN_TYPES } = require("./constants");
+var tokenizer = require("../built/tokenizer");
+var { TOKEN_TYPES } = require("../built/constants");
 
 function withInput(input, cb) {
     const tokens = tokenizer(input);
