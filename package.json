@@ -7,7 +7,6 @@
     "compile": "tsc",
     "test": "tsc && mocha",
     "tdd": "tsc --watch & mocha --watch"
-    
   },
   "author": "timkg",
   "license": "ISC",
