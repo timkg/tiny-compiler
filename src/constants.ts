@@ -1,15 +1,13 @@
-module.exports = {
-    TOKEN_TYPES: {
-        "PAREN": "PAREN",
-        "NUMBER": "NUMBER",
-        "STRING": "STRING",
-        "NAME": "NAME"
-    },
+export const TOKEN_TYPES = {
+    "PAREN": "PAREN",
+    "NUMBER": "NUMBER",
+    "STRING": "STRING",
+    "NAME": "NAME"
+}
 
-    NODE_TYPES: {
-        "Program": "Program",
-        "NumberLiteral": "NumberLiteral",
-        "StringLiteral": "StringLiteral",
-        "CallExpression": "CallExpression"
-    }
+export const NODE_TYPES = {
+    "Program": "Program",
+    "NumberLiteral": "NumberLiteral",
+    "StringLiteral": "StringLiteral",
+    "CallExpression": "CallExpression"
 }

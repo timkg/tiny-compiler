@@ -1,10 +1,32 @@
-var { NODE_TYPES, TOKEN_TYPES } = require("./constants");
+import { NODE_TYPES, TOKEN_TYPES } from "./constants";
+import { Name } from "./tokenizer";
+
+interface NumberLiteral {
+    type: "NumberLiteral";
+    value: number;
+}
+
+interface StringLiteral {
+    type: "StringLiteral";
+    value: string;
+}
+
+interface CallExpression {
+    type: "CallExpression";
+    name: string;
+    params: Array<NumberLiteral | CallExpression>;
+}
+
+interface AST {
+    type: "Program";
+    body: Array<NumberLiteral | StringLiteral | CallExpression>;
+}
 
 function parser (tokens) {
 
     let current = 0;
     
-    function walk() {
+    function walk(): NumberLiteral | StringLiteral | CallExpression {
 
         
         let token = tokens[current];
@@ -13,7 +35,7 @@ function parser (tokens) {
             current++;
 
             return {
-                type: NODE_TYPES.NumberLiteral,
+                type: "NumberLiteral",
                 value: token.value
             }
         }
@@ -22,7 +44,7 @@ function parser (tokens) {
             current++;
 
             return {
-                type: NODE_TYPES.StringLiteral,
+                type: "StringLiteral",
                 value: token.value
             }
         }
@@ -31,17 +53,15 @@ function parser (tokens) {
             token.type === TOKEN_TYPES.PAREN && 
             token.value === "("
         ) {
-            // skip left paren
-            token = tokens[++current];
+            // skip left paren - after left paren comes a Name token
+            token = (tokens[++current] as Name);
 
-            // initialize CallExpression node
-            let node = {
-                type: NODE_TYPES.CallExpression,
-                name: token.value,
-                params: []
-            }
+            // save name for later
+            const callExpressionName: string = token.value;
 
-            // skip name token
+            let callExpressionParams = [];
+
+            // skip name token - after name token come the arguments to the CallExpression
             token = tokens[++current];
 
             // iterate over arguments to CallExpression,
@@ -50,21 +70,25 @@ function parser (tokens) {
                 (token.type !== TOKEN_TYPES.PAREN) ||
                 (token.type === TOKEN_TYPES.PAREN && token.value !== ")")
             ) {
-                node.params.push(walk());
+                callExpressionParams.push(walk());
                 token = tokens[current];
             }
 
             // skip closing parens
             current++;
 
-            return node;
+            return {
+                type: "CallExpression",
+                name: callExpressionName,
+                params: callExpressionParams
+            };
         }
 
         throw new TypeError(token.type);
     }
 
-    let ast = {
-        type: NODE_TYPES.PROGRAM,
+    let ast: AST = {
+        type: "Program",
         body: []
     };
 

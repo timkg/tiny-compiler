@@ -1,6 +1,31 @@
-var { TOKEN_TYPES } = require("./constants");
+import { TOKEN_TYPES }  from "./constants";
 
-function tokenizer (input) {
+interface LeftParen {
+    type: "Paren";
+    value: "("
+}
+
+interface RightParen {
+    type: "Paren";
+    value: ")"
+}
+
+interface Number {
+    type: "Number";
+    value: number;
+}
+
+interface String {
+    type: "String";
+    value: string;
+}
+
+export interface Name {
+    type: "Name";
+    value: string;
+}
+
+function tokenizer (input: string): Array< LeftParen | RightParen | String | Name | Number > {
     let tokens = [];
     let current = 0;
 
