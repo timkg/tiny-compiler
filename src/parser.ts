@@ -1,5 +1,5 @@
 import { NODE_TYPES, TOKEN_TYPES } from "./constants";
-import { Name } from "./tokenizer";
+import { TokenArray, Name } from "./tokenizer";
 
 interface NumberLiteral {
     type: "NumberLiteral";
@@ -22,13 +22,12 @@ interface AST {
     body: Array<NumberLiteral | StringLiteral | CallExpression>;
 }
 
-function parser (tokens) {
+function parser (tokens: TokenArray): AST {
 
     let current = 0;
     
     function walk(): NumberLiteral | StringLiteral | CallExpression {
 
-        
         let token = tokens[current];
 
         if (token.type === TOKEN_TYPES.NUMBER) {

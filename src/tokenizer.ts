@@ -1,32 +1,34 @@
 import { TOKEN_TYPES }  from "./constants";
 
-interface LeftParen {
-    type: "Paren";
+export interface LeftParen {
+    type: "PAREN";
     value: "("
 }
 
-interface RightParen {
-    type: "Paren";
+export interface RightParen {
+    type: "PAREN";
     value: ")"
 }
 
-interface Number {
-    type: "Number";
+export interface Number {
+    type: "NUMBER";
     value: number;
 }
 
-interface String {
-    type: "String";
+export interface String {
+    type: "STRING";
     value: string;
 }
 
 export interface Name {
-    type: "Name";
+    type: "NAME";
     value: string;
 }
 
-function tokenizer (input: string): Array< LeftParen | RightParen | String | Name | Number > {
-    let tokens = [];
+export type TokenArray = Array< LeftParen | RightParen | String | Name | Number>
+
+function tokenizer (input: string): TokenArray {
+    let tokens: TokenArray = [];
     let current = 0;
 
     while(current < input.length) {
@@ -69,7 +71,7 @@ function tokenizer (input: string): Array< LeftParen | RightParen | String | Nam
 
             tokens.push({
                 type: TOKEN_TYPES.NUMBER,
-                value: value
+                value: parseInt(value, 10)
             });
 
             continue;
@@ -109,7 +111,10 @@ function tokenizer (input: string): Array< LeftParen | RightParen | String | Nam
                 char = input[++current];
             }
 
-            tokens.push({ type: TOKEN_TYPES.NAME, value });
+            tokens.push({ 
+                type: TOKEN_TYPES.NAME, 
+                value 
+            });
 
             continue;
         }
