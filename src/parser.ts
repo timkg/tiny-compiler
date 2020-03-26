@@ -17,10 +17,12 @@ interface CallExpression {
     params: Array<NumberLiteral | CallExpression>;
 }
 
-interface AST {
+export interface AST {
     type: "Program";
-    body: Array<NumberLiteral | StringLiteral | CallExpression>;
+    body: Array<Node>;
 }
+
+export type Node = NumberLiteral | StringLiteral | CallExpression | AST;
 
 function parser (tokens: TokenArray): AST {
 
