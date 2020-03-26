@@ -35,7 +35,7 @@ function parser (tokens) {
             current++;
 
             return {
-                type: "NumberLiteral",
+                type: NODE_TYPES.NumberLiteral,
                 value: token.value
             }
         }
@@ -44,7 +44,7 @@ function parser (tokens) {
             current++;
 
             return {
-                type: "StringLiteral",
+                type: NODE_TYPES.StringLiteral,
                 value: token.value
             }
         }
@@ -78,7 +78,7 @@ function parser (tokens) {
             current++;
 
             return {
-                type: "CallExpression",
+                type: NODE_TYPES.CallExpression,
                 name: callExpressionName,
                 params: callExpressionParams
             };
