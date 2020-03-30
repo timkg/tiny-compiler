@@ -1,19 +1,5 @@
-import { AST, NumberLiteral, StringLiteral, CallExpression } from "./parser";
+import { AST, NumberLiteral, StringLiteral, CallExpression, TargetCallExpression, ExpressionStatement } from "./types";
 import traverser from "./traverser";
-
-interface ExpressionStatement {
-    type: "ExpressionStatement";
-    expression: TargetCallExpression;
-}
-
-interface TargetCallExpression {
-    type: "CallExpression";
-    callee: {
-        type: "Identifier";
-        name: string;
-    };
-    arguments: Array<StringLiteral | TargetCallExpression>;
-}
 
 export default function transformer (ast: AST): AST {
 

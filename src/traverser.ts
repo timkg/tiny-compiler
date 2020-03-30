@@ -1,4 +1,4 @@
-import { AST, Node } from "./parser";
+import { AST, Node } from "./types";
 
 type nodeCallback = (node: Node, parent?: Node) => any
 
