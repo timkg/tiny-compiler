@@ -26,12 +26,14 @@ export interface ExpressionStatement {
     expression: TargetCallExpression;
 }
 
+export interface Identifier {
+    type: "Identifier";
+    name: string;
+}
+
 export interface TargetCallExpression {
     type: "TargetCallExpression";
-    callee: {
-        type: "Identifier";
-        name: string;
-    };
+    callee: Identifier;
     arguments: Array<StringLiteral | TargetCallExpression>;
 }
 
