@@ -37,4 +37,4 @@ export interface TargetCallExpression {
     arguments: Array<StringLiteral | TargetCallExpression>;
 }
 
-export type Node = NumberLiteral | StringLiteral | CallExpression | ExpressionStatement | AST;
+export type Node = NumberLiteral | StringLiteral | CallExpression | ExpressionStatement | TargetCallExpression | Identifier | AST;
