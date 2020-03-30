@@ -27,7 +27,7 @@ export interface Name {
 
 export type TokenArray = Array< LeftParen | RightParen | String | Name | Number>
 
-function tokenizer (input: string): TokenArray {
+export default function tokenizer (input: string): TokenArray {
     let tokens: TokenArray = [];
     let current = 0;
 
@@ -125,5 +125,3 @@ function tokenizer (input: string): TokenArray {
 
     return tokens;
 }
-
-module.exports = tokenizer;

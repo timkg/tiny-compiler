@@ -1,7 +1,7 @@
 var assert = require("assert");
-var traverser = require("../built/traverser.js");
-var parser = require("../built/parser");
-var tokenizer = require("../built/tokenizer");
+var traverser = require("../built/traverser.js").default;
+var parser = require("../built/parser").default;
+var tokenizer = require("../built/tokenizer").default;
 
 function withInput(input, cb) {
     var tokens = tokenizer(input);

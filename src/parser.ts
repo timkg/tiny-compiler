@@ -1,30 +1,32 @@
 import { NODE_TYPES, TOKEN_TYPES } from "./constants";
 import { TokenArray, Name } from "./tokenizer";
 
-interface NumberLiteral {
+export interface NumberLiteral {
     type: "NumberLiteral";
     value: number;
 }
 
-interface StringLiteral {
+export interface StringLiteral {
     type: "StringLiteral";
     value: string;
 }
 
-interface CallExpression {
+export interface CallExpression {
     type: "CallExpression";
     name: string;
     params: Array<NumberLiteral | CallExpression>;
+    _context?: any;
 }
 
 export interface AST {
     type: "Program";
     body: Array<Node>;
+    _context?: any;
 }
 
 export type Node = NumberLiteral | StringLiteral | CallExpression | AST;
 
-function parser (tokens: TokenArray): AST {
+export default function parser (tokens: TokenArray): AST {
 
     let current = 0;
     
@@ -99,5 +101,3 @@ function parser (tokens: TokenArray): AST {
 
     return ast;
 }
-
-module.exports = parser;

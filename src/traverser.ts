@@ -21,7 +21,7 @@ interface visitors_i {
     }
 }
 
-function traverser (ast: AST, visitors: visitors_i) {
+export default function traverser (ast: AST, visitors: visitors_i) {
 
     function traverseArray(array: Node[], parent: Node) {
         array.forEach((element) => {
@@ -67,4 +67,3 @@ function traverser (ast: AST, visitors: visitors_i) {
     traverseNode(ast, null)
 }
 
-module.exports = traverser;

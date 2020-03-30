@@ -1,7 +1,6 @@
 var assert = require("assert");
-
-var parser = require("../built/parser");
-var tokenizer = require("../built/tokenizer");
+var parser = require("../built/parser").default;
+var tokenizer = require("../built/tokenizer").default;
 
 var { NODE_TYPES } = require("../built/constants");
 
