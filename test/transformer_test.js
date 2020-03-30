@@ -47,4 +47,15 @@ describe("transformer", function () {
             done();
         })
     })
+
+    it("transforms a nested CallExpression", function (done) {
+        withInput("(add 1 (add 2 3))", ast => {
+            // console.log(JSON.stringify(ast, null, 2))
+            assert.equal(ast.body[0].expression.arguments[1].type, 'CallExpression');
+            assert.equal(ast.body[0].expression.arguments[1].arguments[0].value, 2);
+            assert.equal(ast.body[0].expression.arguments[1].arguments[1].value, 3);
+
+            done();
+        })
+    })
 })
