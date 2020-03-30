@@ -44,7 +44,7 @@ function handleStringLiteral(node: StringLiteral, parent: AST|CallExpression) {
 function handleCallExpression(node: CallExpression, parent: AST|CallExpression) {
 
     let expression: TargetCallExpression|ExpressionStatement = {
-        type: 'CallExpression',
+        type: 'TargetCallExpression',
         callee: {
             type: 'Identifier',
             name: node.name,

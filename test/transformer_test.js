@@ -32,12 +32,12 @@ describe("transformer", function () {
         })
     })
 
-    it("transforms a top-level CallExpression", function (done) {
+    it("transforms a top-level CallExpression into a TargetCallExpression", function (done) {
         withInput("(add 1 2)", ast => {
             // console.log(JSON.stringify(ast, null, 2))
             assert.equal(ast.body.length, 1)
             assert.equal(ast.body[0].type, "ExpressionStatement")
-            assert.equal(ast.body[0].expression.type, "CallExpression")
+            assert.equal(ast.body[0].expression.type, "TargetCallExpression")
             assert.equal(ast.body[0].expression.callee.type, "Identifier")
             assert.equal(ast.body[0].expression.callee.name, "add")
             assert.equal(ast.body[0].expression.arguments.length, 2)
@@ -48,10 +48,10 @@ describe("transformer", function () {
         })
     })
 
-    it("transforms a nested CallExpression", function (done) {
+    it("transforms a nested CallExpression into a TargetCallExpression", function (done) {
         withInput("(add 1 (add 2 3))", ast => {
             // console.log(JSON.stringify(ast, null, 2))
-            assert.equal(ast.body[0].expression.arguments[1].type, 'CallExpression');
+            assert.equal(ast.body[0].expression.arguments[1].type, 'TargetCallExpression');
             assert.equal(ast.body[0].expression.arguments[1].arguments[0].value, 2);
             assert.equal(ast.body[0].expression.arguments[1].arguments[1].value, 3);
 

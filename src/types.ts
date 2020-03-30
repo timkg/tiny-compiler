@@ -27,7 +27,7 @@ export interface ExpressionStatement {
 }
 
 export interface TargetCallExpression {
-    type: "CallExpression";
+    type: "TargetCallExpression";
     callee: {
         type: "Identifier";
         name: string;
